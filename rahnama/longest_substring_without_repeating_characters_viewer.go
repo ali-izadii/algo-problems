@@ -1,8 +1,8 @@
-package leetcode
+package rahnama
 
 // https://leetcode.com/problems/longest-substring-without-repeating-characters/
 
-func lengthOfLongestSubstring(s string) int {
+func lengthOfLongestSubstring(s string) string {
 
 	uniqueSubstrings := make(map[string]bool)
 	for i := 0; i < len(s); i++ {
@@ -16,10 +16,18 @@ func lengthOfLongestSubstring(s string) int {
 		}
 	}
 
-	maxCount := 0
+	maxString := ""
 	for k, _ := range uniqueSubstrings {
-		maxCount = max(maxCount, len(k))
+		viwCount := 0
+		for _, b := range k {
+			if b == 'a' || b == 'e' || b == 'i' || b == 'o' || b == 'u' {
+				viwCount++
+			}
+		}
+		if viwCount%2 == 0 && viwCount != 0 && len(k) > len(maxString) {
+			maxString = k
+		}
 	}
 
-	return maxCount
+	return maxString
 }
